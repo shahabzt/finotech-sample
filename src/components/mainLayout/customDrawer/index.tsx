@@ -9,7 +9,7 @@ import {
 import { RouteEnums } from "../../../enums/routeEnums";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
-import classes from "./customDrawer.module.css";
+import classes from "./SideBarMenu.module.css";
 
 const SidebarMenu: FC = () => {
   const navigate = useNavigate();

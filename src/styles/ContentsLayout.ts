@@ -6,7 +6,7 @@ const ContentsLayout = styled("div")({
   background: "#FEFEFE",
   borderRadius: "1rem",
   border: "1px solid #FEFEFE",
-  width: "63.33vw",
+  width: "64vw",
   position: "absolute",
   top: "64px",
   right: "7.5vw",

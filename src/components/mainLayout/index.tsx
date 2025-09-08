@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-import ContentsLayout from "../../styles/ContentsLayout";
-import SidebarMenu from "./customDrawer";
+import ContentsLayout from "../../styles/contentsLayout";
+import SidebarMenu from "../sideBar";
 
 export default function MainLayout() {
   return (

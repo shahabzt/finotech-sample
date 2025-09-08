@@ -2,14 +2,10 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { List, ListItem, ListItemButton, Typography } from "@mui/material";
 
-import {
-  UserMenuItems,
-  UserMenuItemsProps,
-} from "../../../utils/UserMenuItems";
-import { RouteEnums } from "../../../enums/routeEnums";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
-
-import classes from "./SideBarMenu.module.css";
+import { UserMenuItems, UserMenuItemsProps } from "../../utils/UserMenuItems";
+import { RouteEnums } from "../../enums/routeEnums";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import SideBarContainer from "../../styles/sideBarContainer";
 
 const SidebarMenu: FC = () => {
   const navigate = useNavigate();
@@ -28,11 +24,11 @@ const SidebarMenu: FC = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <List disablePadding className={classes.userMenuContainer}>
+    <SideBarContainer>
+      <List disablePadding sx={{ padding: "8px 24px 16px" }}>
         {UserMenuItems.map((item, index) => (
           <ListItem
-            style={{ marginBottom: "8px" }}
+            sx={{ marginBottom: "8px" }}
             key={item.id}
             disablePadding
             onClick={() => {
@@ -47,7 +43,7 @@ const SidebarMenu: FC = () => {
           </ListItem>
         ))}
       </List>
-    </div>
+    </SideBarContainer>
   );
 };
 

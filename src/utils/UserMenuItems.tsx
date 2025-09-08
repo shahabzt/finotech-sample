@@ -1,5 +1,5 @@
 import { RouteEnums } from "../enums/routeEnums";
-import { UserMenuItemsProps } from "../models/userMenu.model";
+import { UserMenuItemsProps } from "../models/menuItems.model";
 
 
 

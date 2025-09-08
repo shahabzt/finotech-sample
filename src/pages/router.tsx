@@ -2,8 +2,10 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "../components/mainLayout";
 import { RouteEnums } from "../enums/routeEnums";
 import AuthWrapper from "./authWrapper";
-import LoginContainer from "../container/login";
-import DashboardContainer from "../container/dashboard";
+import LoginContainer from "./login";
+import DashboardContainer from "./dashboard";
+import UsersContainer from "./users";
+import UsersDetails from "./userDetails";
 
 const Router = createBrowserRouter([
   {
@@ -27,8 +29,12 @@ const Router = createBrowserRouter([
           },
           {
             path: RouteEnums.USER_PAGE,
-            // element: <UserPageComponent />,
+            element: <UsersContainer />,
           },
+          {
+            path:`${RouteEnums.USER_PAGE}/:id`,
+            element:<UsersDetails/>
+          }
         ],
       },
     ],

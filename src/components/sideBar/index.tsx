@@ -1,17 +1,27 @@
-import { FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FC, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { List, ListItem, ListItemButton, Typography } from "@mui/material";
 
 import { UserMenuItems } from "../../utils/UserMenuItems";
 import { RouteEnums } from "../../enums/routeEnums";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import SideBarContainer from "../../styles/sideBarContainer";
-import { UserMenuItemsProps } from "../../models/userMenu.model";
+import { UserMenuItemsProps } from "../../models/menuItems.model";
 
 const SidebarMenu: FC = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { remove } = useLocalStorage("token");
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const findActiveIndex = UserMenuItems.findIndex((item) =>
+      item.pathname.includes(pathname)
+    );
+    if (findActiveIndex >= 0) {
+      setActiveIndex(findActiveIndex);
+    }
+  }, [pathname]);
 
   const handleOnMenuItems = (index: number, item: UserMenuItemsProps) => {
     if (item.pathname === RouteEnums.LOGOUT) {
@@ -21,7 +31,6 @@ const SidebarMenu: FC = () => {
     }
     navigate(`${item.pathname}`);
     setActiveIndex(index);
-    sessionStorage.setItem("lastIndex", `${index}`);
   };
 
   return (

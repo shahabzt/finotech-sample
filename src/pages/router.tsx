@@ -3,22 +3,23 @@ import MainLayout from "../components/mainLayout";
 import { RouteEnums } from "../enums/routeEnums";
 import AuthWrapper from "./authWrapper";
 import LoginContainer from "../container/login";
+import DashboardContainer from "../container/dashboard";
 
 const Router = createBrowserRouter([
   {
     path: "/",
-    element: <AuthWrapper />, 
+    element: <AuthWrapper />,
     children: [
       {
-        element: <MainLayout />, 
-        children: [  
+        element: <MainLayout />,
+        children: [
           {
             path: "/",
-            element: <Navigate to={RouteEnums.DASHBOARD} replace />, 
+            element: <Navigate to={RouteEnums.DASHBOARD} replace />,
           },
           {
             path: RouteEnums.DASHBOARD,
-            element: <>sami</>, 
+            element: <DashboardContainer />,
           },
           {
             path: RouteEnums.LOGS,
@@ -26,17 +27,15 @@ const Router = createBrowserRouter([
           },
           {
             path: RouteEnums.USER_PAGE,
-            // element: <UserPageComponent />, 
+            // element: <UserPageComponent />,
           },
         ],
       },
-    
     ],
-    
   },
   {
     path: RouteEnums.LOGIN,
-    element: <LoginContainer/>, 
+    element: <LoginContainer />,
   },
 ]);
 

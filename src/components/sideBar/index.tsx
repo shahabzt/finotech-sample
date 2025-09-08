@@ -2,10 +2,11 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { List, ListItem, ListItemButton, Typography } from "@mui/material";
 
-import { UserMenuItems, UserMenuItemsProps } from "../../utils/UserMenuItems";
+import { UserMenuItems } from "../../utils/UserMenuItems";
 import { RouteEnums } from "../../enums/routeEnums";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import SideBarContainer from "../../styles/sideBarContainer";
+import { UserMenuItemsProps } from "../../models/userMenu.model";
 
 const SidebarMenu: FC = () => {
   const navigate = useNavigate();

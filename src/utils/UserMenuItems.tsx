@@ -1,10 +1,7 @@
 import { RouteEnums } from "../enums/routeEnums";
+import { UserMenuItemsProps } from "../models/userMenu.model";
 
-export interface UserMenuItemsProps {
-  title: string;
-  id: number;
-  pathname: string;
-}
+
 
 export const UserMenuItems: UserMenuItemsProps[] = [
   {

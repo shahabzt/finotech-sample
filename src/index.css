@@ -1,13 +1,13 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url(./assets/fonts/style.css);
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family:  IRANSansXFaNum !important;
+  direction: rtl;
+  margin: 0;
+  max-width: "100vw";
+  max-inline-size: 100vw;
+  min-block-size: 100vh;
+  overflow-x: hidden;
+  padding: 0 7.5vw;
+  background-color: rgba(241, 241, 241, 1);
 }

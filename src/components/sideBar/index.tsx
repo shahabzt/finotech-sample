@@ -15,16 +15,15 @@ import SideBarContainer from "../../styles/sideBarContainer";
 const SidebarMenu: FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { remove:removeToken } = useLocalStorage("token");
-  const dispatch = useDispatch()
-  
+  const { remove: removeToken } = useLocalStorage("token");
+  const dispatch = useDispatch();
+
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const findActiveIndex = UserMenuItems.findIndex((item) =>
       pathname.includes(item.pathname)
     );
-    console.log(pathname,findActiveIndex)
     if (findActiveIndex >= 0) {
       setActiveIndex(findActiveIndex);
     }
@@ -33,11 +32,11 @@ const SidebarMenu: FC = () => {
   const handleOnMenuItems = (index: number, item: UserMenuItemsProps) => {
     if (item.pathname === RouteEnums.LOGOUT) {
       removeToken();
-      dispatch(addLog(ActionEnums.LOGOUT))
+      dispatch(addLog(ActionEnums.LOGOUT));
       navigate(RouteEnums.LOGIN);
       return;
     }
-    dispatch(addLog(`${ActionEnums.RELOCATE} ${item.title}`))
+    dispatch(addLog(`${ActionEnums.RELOCATE} ${item.title}`));
     navigate(`${item.pathname}`);
     setActiveIndex(index);
   };

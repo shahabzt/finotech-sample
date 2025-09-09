@@ -10,10 +10,10 @@ import { ActionEnums } from "../../enums/actionEnums";
 const DashboardContainer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { remove } = useLocalStorage("token");
+  const { remove: removeToken } = useLocalStorage("token");
 
   const handleOnLogout = () => {
-    remove();
+    removeToken();
     navigate(RouteEnums.LOGIN);
     dispatch(addLog(ActionEnums.LOGOUT));
   };

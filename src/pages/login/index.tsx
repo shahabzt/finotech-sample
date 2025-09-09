@@ -1,24 +1,23 @@
 import { Container, Box, TextField, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useDispatch } from "react-redux";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-
 import { LoginFormInputs, loginSchema } from "./formSchema";
-import { useDispatch } from "react-redux";
 import { addLog } from "../../store/logsReducer";
 import { ActionEnums } from "../../enums/actionEnums";
 
 const LoginContainer = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const { setValue: setToken } = useLocalStorage("token");
   const { setValue: setEmail } = useLocalStorage("email");
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormInputs>({
@@ -28,7 +27,7 @@ const LoginContainer = () => {
   const onSubmit = (data: LoginFormInputs) => {
     setToken("true");
     setEmail(data.email);
-    dispatch(addLog(ActionEnums.LOGIN))
+    dispatch(addLog(ActionEnums.LOGIN));
     navigate("/");
   };
 
@@ -43,34 +42,49 @@ const LoginContainer = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          ورود به پنل کابری
+          ورود به پنل کاربری
         </Typography>
+
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
           noValidate
           sx={{ mt: 1 }}
         >
-          <TextField
-            label="ایمیل"
-            fullWidth
-            autoComplete="email"
-            autoFocus
-            margin="normal"
-            {...register("email")}
-            error={!!errors.email}
-            helperText={errors.email ? errors.email.message : ""}
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="ایمیل"
+                fullWidth
+                autoComplete="email"
+                autoFocus
+                margin="normal"
+                error={!!errors.email}
+                helperText={errors.email ? errors.email.message : ""}
+              />
+            )}
           />
-          <TextField
-            label="رمز عبور"
-            type="password"
-            fullWidth
-            margin="normal"
-            autoComplete="current-password"
-            {...register("password")}
-            error={!!errors.password}
-            helperText={errors.password ? errors.password.message : ""}
+
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="رمز عبور"
+                type="password"
+                fullWidth
+                margin="normal"
+                autoComplete="current-password"
+                error={!!errors.password}
+                helperText={errors.password ? errors.password.message : ""}
+              />
+            )}
           />
+
           <Button
             type="submit"
             fullWidth
@@ -78,7 +92,7 @@ const LoginContainer = () => {
             disabled={isSubmitting}
             sx={{ mt: 3, mb: 2 }}
           >
-            {"ورود"}
+            ورود
           </Button>
         </Box>
       </Box>

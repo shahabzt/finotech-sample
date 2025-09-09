@@ -6,9 +6,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import { LoginFormInputs, loginSchema } from "./formSchema";
+import { useDispatch } from "react-redux";
+import { addLog } from "../../store/logsReducer";
+import { ActionEnums } from "../../enums/actionEnums";
 
 const LoginContainer = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
   const { setValue: setToken } = useLocalStorage("token");
   const { setValue: setEmail } = useLocalStorage("email");
 
@@ -23,6 +28,7 @@ const LoginContainer = () => {
   const onSubmit = (data: LoginFormInputs) => {
     setToken("true");
     setEmail(data.email);
+    dispatch(addLog(ActionEnums.LOGIN))
     navigate("/");
   };
 

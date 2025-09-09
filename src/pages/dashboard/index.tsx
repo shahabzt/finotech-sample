@@ -1,15 +1,21 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { RouteEnums } from "../../enums/routeEnums";
+import { addLog } from "../../store/logsReducer";
+import { ActionEnums } from "../../enums/actionEnums";
 
 const DashboardContainer = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { remove } = useLocalStorage("token");
-  
+
   const handleOnLogout = () => {
     remove();
     navigate(RouteEnums.LOGIN);
+    dispatch(addLog(ActionEnums.LOGOUT));
   };
 
   return (
@@ -18,7 +24,11 @@ const DashboardContainer = () => {
       <Typography variant="body1">
         این پنل برای مدیریت کاربران و عملیات های کاربری است
       </Typography>
-      <Button variant="contained" onClick={handleOnLogout} sx={{width:"50%"}}>
+      <Button
+        variant="contained"
+        onClick={handleOnLogout}
+        sx={{ width: "50%" }}
+      >
         خروج از پنل کاربری{" "}
       </Button>
     </Box>

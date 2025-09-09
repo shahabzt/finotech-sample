@@ -6,6 +6,7 @@ import LoginContainer from "./login";
 import DashboardContainer from "./dashboard";
 import UsersContainer from "./users";
 import UsersDetails from "./userDetails";
+import LogsContainer from "./logs";
 
 const Router = createBrowserRouter([
   {
@@ -25,16 +26,16 @@ const Router = createBrowserRouter([
           },
           {
             path: RouteEnums.LOGS,
-            // element: <LogsComponent />,
+            element: <LogsContainer />,
           },
           {
             path: RouteEnums.USER_PAGE,
             element: <UsersContainer />,
           },
           {
-            path:`${RouteEnums.USER_PAGE}/:id`,
-            element:<UsersDetails/>
-          }
+            path: `${RouteEnums.USER_PAGE}/:id`,
+            element: <UsersDetails />,
+          },
         ],
       },
     ],

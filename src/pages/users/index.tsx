@@ -10,16 +10,22 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { useGetUsers } from "../../queries/getUsers.query";
 import { UsersDataModel } from "../../models/users.model";
-import { useNavigate } from "react-router-dom";
+import { addLog } from "../../store/logsReducer";
+import { ActionEnums } from "../../enums/actionEnums";
 
 const UsersContainer = () => {
   const navigate = useNavigate();
   const { data } = useGetUsers();
+  const dispatch = useDispatch();
 
   const handleAction = (user: UsersDataModel) => {
-    navigate(`${user.id}`, {state:{user}});
+    dispatch(addLog(`${ActionEnums.SEEDETAILS} ${user.id}`));
+    navigate(`${user.id}`, { state: { user } });
   };
 
   if (!data) {

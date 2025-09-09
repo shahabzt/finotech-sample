@@ -1,17 +1,23 @@
 import { FC, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { List, ListItem, ListItemButton, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 
+import { addLog } from "../../store/logsReducer";
 import { UserMenuItems } from "../../utils/UserMenuItems";
 import { RouteEnums } from "../../enums/routeEnums";
+import { ActionEnums } from "../../enums/actionEnums";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import SideBarContainer from "../../styles/sideBarContainer";
 import { UserMenuItemsProps } from "../../models/menuItems.model";
+
+import SideBarContainer from "../../styles/sideBarContainer";
 
 const SidebarMenu: FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { remove } = useLocalStorage("token");
+  const dispatch = useDispatch()
+  
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -27,8 +33,10 @@ const SidebarMenu: FC = () => {
     if (item.pathname === RouteEnums.LOGOUT) {
       remove();
       navigate(RouteEnums.LOGIN);
+      dispatch(addLog(ActionEnums.LOGOUT))
       return;
     }
+    dispatch(addLog(`${ActionEnums.RELOCATE} ${item.title}`))
     navigate(`${item.pathname}`);
     setActiveIndex(index);
   };

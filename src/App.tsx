@@ -1,5 +1,4 @@
 import { RouterProvider } from "react-router-dom";
-import "./App.css";
 import Router from "./pages/router";
 import createCache from "@emotion/cache";
 import rtlPlugin from "stylis-plugin-rtl";

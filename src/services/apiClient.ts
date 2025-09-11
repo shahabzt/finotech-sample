@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     "Cache-Control": "no-cache",
     Pragma: "no-cache",
